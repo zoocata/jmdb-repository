@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/avenir');
+
+        .slideshow-container {
+            width: 640px;
+            height: 128px;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .slideshow {
+            overflow: hidden;
+            width: 640px;
+            height: 128px;
+            position: relative;
+        }
+
+        .slideshow-inner {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .slide-link {
+            position: relative;
+            display: block;
+            height: 128px;
+            width: 128px;
+            overflow: hidden;
+            flex-shrink: 0;
+            padding: 2px;
+        }
+
+        .slide-link img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .slide-link:hover img {
+            filter: brightness(80%);
+            opacity: 0.8;
+        }
+
+        .see-more {
+            position: right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 128px;
+            width: 108px;
+            background-color: #f5f5f5;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+            margin: 2px;
+        }
+
+        .see-more:hover {
+            background-color: #e5e5e5;
+        }
+
+        .see-more-text {
+            color: #333;
+            font-size: 10px;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+            text-align: center;
+            padding: 14px;
+        }
+
+        .image-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            width: 100%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+        }
+
+        .slide-link:hover .image-title {
+            opacity: 1;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div id="slideshow" class="slideshow">
+            <button class="arrow left" onclick="moveSlide(-1, this)">&#10094;</button>
+            <button class="arrow right" onclick="moveSlide(1, this)">&#10095;</button>
+            <div class="slideshow-inner">
+                <a href="/bergen-green" class="slide-link">
+                    <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-1b3654ef-4d13-407a-b475-c735379f2fab.webp?w=592&e=webp&cX=77&cY=0&cW=766&cH=613" alt="Bergen Green">
+                    <div class="image-title">Bergen Green</div>
+                </a>
+                              <a href="/greenwood" class="slide-link">
+                    <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-0a3830bf-0be0-40e3-b254-75e7b7b592cc.jpg?w=592&e=webp&cX=170.25&cY=0&cW=1707.5&cH=1366" alt="Greenwood">
+                    <div class="image-title">Greenwood</div>
+                </a>
+                <a href="/park-slope-3-family" class="slide-link">
+                    <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-7d1bf435-8895-482e-8c4c-f7423d642e40.jpg" alt="Park Slope Townhouse">
+                    <div class="image-title">Park Slope Three Family</div>
+                </a>
+                <a href="/one-john-street" class="slide-link">
+                    <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-b285d763-e3ce-468f-9129-819379164b1e.jpg?w=592&e=webp&cX=125&cY=0&cW=1250&cH=1000" alt="One John Street">
+                    <div class="image-title">One John Street</div>
+                </a>
+                <a href="/best-stuy-townhouse" class="slide-link">
+                    <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-29306da0-2b98-4ef6-bd2c-da37a1839dac.jpg?w=592&e=webp&cX=170.25&cY=0&cW=1707.5&cH=1366" alt="Bed-Stuy Townhouse">
+                    <div class="image-title">Bed-Stuy Townhouse</div>
+                </a>
+            </div>
+        </div>
+        <a href="/brooklyn" class="see-more">
+            <div class="see-more-text">ALL BROOKLYN PROJECTS</div>
+        </a>
+    </div>
+
+    <script>
+        (function() {
+            function initSlideshow(slideshow) {
+                var currentIndex = 0;
+                var slideshowInner = slideshow.querySelector('.slideshow-inner');
+                var slides = slideshow.querySelectorAll('.slide-link');
+                var totalSlides = slides.length;
+
+                function cloneSlides() {
+                    slides.forEach(function(slide) {
+                        var clone = slide.cloneNode(true);
+                        slideshowInner.appendChild(clone);
+                    });
+                }
+
+                function updateSlidePosition() {
+                    var slideWidth = slides[0].clientWidth;
+                    var newTranslateX = -currentIndex * slideWidth;
+                    slideshowInner.style.transform = 'translateX(' + newTranslateX + 'px)';
+
+                    if (currentIndex >= totalSlides) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = 0;
+                            slideshowInner.style.transform = 'translateX(0)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    } else if (currentIndex < 0) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = totalSlides - 1;
+                            var finalTranslateX = -currentIndex * slideWidth;
+                            slideshowInner.style.transform = 'translateX(' + finalTranslateX + 'px)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    }
+                }
+
+                slideshow.moveSlide = function(direction) {
+                    currentIndex += direction;
+                    updateSlidePosition();
+                };
+
+                cloneSlides();
+                updateSlidePosition();
+            }
+
+            var slideshows = document.querySelectorAll('.slideshow');
+            slideshows.forEach(initSlideshow);
+
+            window.moveSlide = function(direction, button) {
+                var slideshow = button.closest('.slideshow');
+                slideshow.moveSlide(direction);
+            };
+        })();
+    </script>
+</body>
+</html>

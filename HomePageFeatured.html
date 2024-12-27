@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.cdnfonts.com/css/times-new-roman" rel="stylesheet">
+  
+    <style>
+  
+        @import url('https://fonts.cdnfonts.com/css/avenir');
+      
+        .as-featured-slideshow {
+            overflow: hidden;
+            width: 752px;
+            height: 244px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .as-featured-slideshow * {
+            box-sizing: border-box;
+        }
+
+        .as-featured-slideshow .slideshow-inner {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .as-featured-slideshow .slide-link {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 135px;
+            height: 300px;
+          	padding: 2px;
+            overflow: hidden;
+            flex-shrink: 0;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .as-featured-slideshow .slide-link img {
+            width: 135px;
+            height: 176px;
+            object-fit: cover;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .as-featured-slideshow .slide-link:hover img {
+            filter: brightness(80%);
+            opacity: 0.8;
+        }
+
+        .as-featured-slideshow .image-caption {
+            margin-top: 10px;
+        	font-family: 'Avenir', sans-serif;
+            width: 135px;
+            display: flex;
+            flex-direction: column;
+            height: 114px;
+            overflow: hidden;
+          	padding: 2px;
+        }
+
+        .as-featured-slideshow .caption-title {
+            font-size: 12px;
+            font-weight: 200;
+            line-height: 1.2;
+            margin-bottom: 4px;
+            
+            hyphens: auto;
+          	padding: 1px;
+        }
+
+        .as-featured-slideshow .caption-subtitle {
+            font-size: 10px;
+          	font-weight: 200;
+            line-height: 1.3;
+          	font-style: italic;
+            color: #666;
+            flex-grow: 1;
+            overflow: hidden;
+            display: -webkit-box;
+            webkit-line-clamp: 4;
+            webkit-box-orient: vertical;
+          
+        }
+
+        .as-featured-slideshow .arrow {
+            position: absolute;
+            top: 88px;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .as-featured-slideshow .left {
+            left: 10px;
+        }
+
+        .as-featured-slideshow .right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="featured-slideshow" class="as-featured-slideshow">
+        <button class="arrow left" onclick="moveAsFeatureSlide(-1, this)">&#10094;</button>
+        <div class="slideshow-inner">
+            <a href="https://www.nytimes.com/2017/10/17/realestate/renovating-rental-with-future-in-mind.html?rref=collection%2Fsectioncollection%2Frealestate&action=click&contentCollection=realestate&region=rank&module=package&version=highlights&contentPlacement=8&pgtype=sectionfront" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-26942db8-516a-4b62-8a56-8202e01559dd.jpg?w=499&e=webp&cX=190&cY=7&cW=346&cH=451" alt="The New York Times">
+                <div class="image-caption">
+                    <div class="caption-title">The New York Times</div>
+                  <div class="caption-subtitle">Renovating a Rental with the Future in Mind</div>
+                </div>
+            </a>
+            <a href="https://www.homebuilderdigest.com/the-best-custom-home-builders-in-brooklyn-new-york/" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-a47d1631-0415-431d-9190-78cf15affd87.jpg?w=499&e=webp&cX=552&cY=28&cW=1396&cH=1819" alt="Home Builder Digest">
+                <div class="image-caption">
+                    <div class="caption-title">Home Builder Digest</div>
+                    <div class="caption-subtitle">The Best Custom Home Builders in Brooklyn</div>
+                </div>
+            </a>
+            <a href="https://www.newyorkcontractors.org/the-best-design-build-firms-in-brooklyn-new-york/" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-57ae3baa-970d-4fc1-8a17-1688b0d79bf5.jpg?w=499&e=webp&cX=0&cY=132&cW=768&cH=1001" alt="New York Contractors">
+                <div class="image-caption">
+                    <div class="caption-title">New York Contractors</div>
+                    <div class="caption-subtitle">The Best Design-Build Firms in Brooklyn</div>
+                </div>
+            </a>
+            <a href="https://hiddencityphila.org/2017/06/an-artful-adaptation-in-bella-vista/" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-648ba43c-a4e1-4eaf-8dda-b9dfe09e8361.jpg?w=499&e=webp&cX=378&cY=15&cW=744&cH=970" alt="HiddenCityPhila">
+                <div class="image-caption">
+                    <div class="caption-title">HiddenCityPhila</div>
+                    <div class="caption-subtitle">Artful Adaptation in Bella Vista</div>
+                </div>
+            </a>
+            <a href="https://www.6sqft.com/park-slopes-slim-and-super-green-condo-building-features-a-solar-panel-clad-facade/" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-04248041-dbc6-42c1-b33c-42c8c62814b5.jpg?w=499&e=webp&cX=202&cY=8&cW=396&cH=516" alt="6Sqft">
+                <div class="image-caption">
+                    <div class="caption-title">6Sqft</div>
+                    <div class="caption-subtitle">Passive Condos Get Attention</div>
+                </div>
+            </a>
+                      <a href="https://issuu.com/trronline/docs/our_county_home_small" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-db8f5d5c-a6ce-4db4-9064-014a215f1d45.jpg?e=webp" alt="OurCountryHome">
+                <div class="image-caption">
+                    <div class="caption-title">Our Country Home</div>
+                    <div class="caption-subtitle">Building a Sustainable House</div>
+                </div>
+            </a>
+                                <a href="https://thecatskillchronicle.com/2010/11/28/2010-sullivan-showcase-awards/" class="slide-link">
+                <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-80484fb2-b32e-46c7-8432-fb8db8d71e59.jpg?w=720&e=webp" alt="OurCountryHome">
+                <div class="image-caption">
+                    <div class="caption-title">Sullivan Showcase</div>
+                    <div class="caption-subtitle"> Best Residential Green Building</div>
+                </div>
+            </a>
+          
+        </div>
+        <button class="arrow right" onclick="moveAsFeatureSlide(1, this)">&#10095;</button>
+    </div>
+
+    <script>
+        (function() {
+            function initAsFeatureSlideshow(slideshow) {
+                var currentIndex = 0;
+                var slideshowInner = slideshow.querySelector('.slideshow-inner');
+                var slides = slideshow.querySelectorAll('.slide-link');
+                var totalSlides = slides.length;
+
+                function cloneSlides() {
+                    slides.forEach(function(slide) {
+                        var clone = slide.cloneNode(true);
+                        slideshowInner.appendChild(clone);
+                    });
+                }
+
+                function updateSlidePosition() {
+                    var slideWidth = slides[0].clientWidth;
+                    var newTranslateX = -currentIndex * slideWidth;
+                    slideshowInner.style.transform = 'translateX(' + newTranslateX + 'px)';
+
+                    if (currentIndex >= totalSlides) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = 0;
+                            slideshowInner.style.transform = 'translateX(0)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    } else if (currentIndex < 0) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = totalSlides - 1;
+                            var finalTranslateX = -currentIndex * slideWidth;
+                            slideshowInner.style.transform = 'translateX(' + finalTranslateX + 'px)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    }
+                }
+
+                slideshow.moveAsFeatureSlide = function(direction) {
+                    currentIndex += direction;
+                    updateSlidePosition();
+                };
+
+                cloneSlides();
+                updateSlidePosition();
+            }
+
+            var asFeatureSlideshows = document.querySelectorAll('.as-featured-slideshow');
+            asFeatureSlideshows.forEach(initAsFeatureSlideshow);
+
+            window.moveAsFeatureSlide = function(direction, button) {
+                var slideshow = button.closest('.as-featured-slideshow');
+                slideshow.moveAsFeatureSlide(direction);
+            };
+        })();
+    </script>
+</body>
+</html>

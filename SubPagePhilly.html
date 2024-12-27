@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/avenir');
+
+        .slideshow-container {
+            width: 640px;
+            height: 130px;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .slideshow {
+            overflow: hidden;
+            width: 640px;
+            height: 128px;
+            position: relative;
+        }
+
+        .slideshow-inner {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .slide-link {
+            position: relative;
+            display: block;
+            height: 128px;
+            width: 128px;
+            overflow: hidden;
+            flex-shrink: 0;
+            padding: 2px;
+        }
+
+        .slide-link img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .slide-link:hover img {
+            filter: brightness(80%);
+            opacity: 0.8;
+        }
+
+        .see-more {
+            position: right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 128px;
+            width: 108px;
+            background-color: #f5f5f5;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+            margin: 2px;
+        }
+
+        .see-more:hover {
+            background-color: #e5e5e5;
+        }
+
+        .see-more-text {
+            color: #333;
+            font-size: 10px;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+            text-align: center;
+            padding: 14px;
+        }
+
+        .image-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            width: 100%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+        }
+
+        .slide-link:hover .image-title {
+            opacity: 1;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div id="slideshow" class="slideshow">
+            <button class="arrow left" onclick="moveSlide(-1, this)">&#10094;</button>
+            <button class="arrow right" onclick="moveSlide(1, this)">&#10095;</button>
+            <div class="slideshow-inner">
+	<a href="/pageant-gallery" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-9a536929-4170-43b3-9181-3fcd441d23a4.jpg?w=562&e=webp&cX=504.91999999999996&cY=0&cW=1038.16&cH=1366" alt="pageantgallery">
+      <div class="image-title">Pageant Gallery</div>
+    </a>
+    <a href="/passyunk-square" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-7afb1988-4df2-45c9-b474-8b18d3c60acf.jpg?e=webp" alt="federalstreet">
+      <div class="image-title">Passyunk Square</div>
+    </a>
+                  <a href="/photographers-loft" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-20fad4a9-b76e-41db-b2ae-7615c5ef81b4.png" alt="reedstreet">
+      <div class="image-title">Photographer's Loft</div>
+    </a>
+                  <a href="/parkside-townhouse" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-be7aaf65-34f6-42b3-9cea-8bff97c7a9b2.jpg?w=1776&e=webp" alt="reedstreet">
+      <div class="image-title">Parkside Townhouse</div>
+    </a>
+    <a href="/catharine-townhouse" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-f7fca02c-6cb8-46ea-9891-aba5a2c1fd89.jpg?w=562&e=webp&cX=0&cY=0&cW=1370&cH=1802.6315789473683" alt="catharinetownhouse">
+      <div class="image-title">Catharine Townhouse</div>
+    </a>
+    <a href="/belgrade" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-e256079e-8974-4167-aedf-80f5d7498627.jpg?w=562&e=webp&cX=370.76&cY=0&cW=758.48&cH=998" alt="belgrade">
+      <div class="image-title">Belgrade</div>
+    </a>
+            </div>
+        </div>
+        <a href="/upstate" class="see-more">
+            <div class="see-more-text">ALL PHILADELPHIA PROJECTS</div>
+        </a>
+    </div>
+
+    <script>
+        (function() {
+            function initSlideshow(slideshow) {
+                var currentIndex = 0;
+                var slideshowInner = slideshow.querySelector('.slideshow-inner');
+                var slides = slideshow.querySelectorAll('.slide-link');
+                var totalSlides = slides.length;
+
+                function cloneSlides() {
+                    slides.forEach(function(slide) {
+                        var clone = slide.cloneNode(true);
+                        slideshowInner.appendChild(clone);
+                    });
+                }
+
+                function updateSlidePosition() {
+                    var slideWidth = slides[0].clientWidth;
+                    var newTranslateX = -currentIndex * slideWidth;
+                    slideshowInner.style.transform = 'translateX(' + newTranslateX + 'px)';
+
+                    if (currentIndex >= totalSlides) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = 0;
+                            slideshowInner.style.transform = 'translateX(0)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    } else if (currentIndex < 0) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = totalSlides - 1;
+                            var finalTranslateX = -currentIndex * slideWidth;
+                            slideshowInner.style.transform = 'translateX(' + finalTranslateX + 'px)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    }
+                }
+
+                slideshow.moveSlide = function(direction) {
+                    currentIndex += direction;
+                    updateSlidePosition();
+                };
+
+                cloneSlides();
+                updateSlidePosition();
+            }
+
+            var slideshows = document.querySelectorAll('.slideshow');
+            slideshows.forEach(initSlideshow);
+
+            window.moveSlide = function(direction, button) {
+                var slideshow = button.closest('.slideshow');
+                slideshow.moveSlide(direction);
+            };
+        })();
+    </script>
+</body>
+</html>

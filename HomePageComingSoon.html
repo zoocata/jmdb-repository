@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/avenir');
+
+        .slideshow-container {
+            width: 768px;
+            height: 128px;
+            position: relative;
+            margin: 0 auto;
+            display: flex;
+        }
+
+        .slideshow {
+            overflow: hidden;
+            width: 644px;
+            height: 128px;
+            position: relative;
+        }
+
+        .slideshow-inner {
+            display: flex;
+            transition: transform 0.3s ease;
+        }
+
+        .slide-link {
+            position: relative;
+            display: block;
+            height: 128px;
+            width: 128px;
+            overflow: hidden;
+            flex-shrink: 0;
+            padding: 2px;
+        }
+
+        .slide-link img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: filter 0.3s ease, opacity 0.3s ease;
+        }
+
+        .slide-link:hover img {
+            filter: brightness(80%);
+            opacity: 0.8;
+        }
+
+        .see-more {
+            position: right;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 128px;
+            width: 108px;
+            background-color: #f5f5f5;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background-color 0.3s ease;
+            margin: 2px;
+        }
+
+        .see-more:hover {
+            background-color: #e5e5e5;
+        }
+
+        .see-more-text {
+            color: #333;
+            font-size: 10px;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+            text-align: center;
+            padding: 14px;
+        }
+
+        .image-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            width: 100%;
+            padding: 0 5px;
+            box-sizing: border-box;
+            font-family: 'Avenir', sans-serif;
+            font-weight: 100;
+        }
+
+        .slide-link:hover .image-title {
+            opacity: 1;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            padding: 10px;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div id="slideshow" class="slideshow">
+            <button class="arrow left" onclick="moveSlide(-1, this)">&#10094;</button>
+            <button class="arrow right" onclick="moveSlide(1, this)">&#10095;</button>
+            <div class="slideshow-inner">
+    <a href="/hudson-modern" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-951bcbc9-296f-4ce2-a04f-a353e437056a.jpg?w=296&e=webp&cX=200&cY=0&cW=800&cH=800" alt="hudsonmodern">
+      <div class="image-title">Hudson Modern</div>
+    </a>
+                  <a href="/galleons-lap" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-b498608d-00ef-4806-80de-b33ac68b5f25.jpg?w=296&e=webp&cX=187.5&cY=0&cW=1125&cH=1125" alt="galleonslap">
+      <div class="image-title">Galleon's Lap</div>
+    </a>
+                  <a href="/narrowsburg" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-4c34803c-c7bb-4c6b-b6a0-6bdc749afdb3.jpg?w=296&e=webp" alt="narrowsburg">
+      <div class="image-title">Narrowsburg</div>
+    </a>
+                  <a href="/tanigers-nest" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-92cd939d-9dff-4356-8a1b-066f21887a98.jpg?w=296&e=webp&cX=187.5&cY=0&cW=1125&cH=1125" alt="tanigers">
+      <div class="image-title">Taniger's Nest</div>
+    </a>
+    <a href="/alpaca" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-287809df-5a91-4bf0-bb66-7d922afa0bf4.jpg?w=296&e=webp&cX=609&cY=0&cW=1142&cH=1142" alt="alpaca">
+      <div class="image-title">Alpaca</div>
+    </a>
+    <a href="/mountain-house" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-f956932a-0cc9-414d-b3e8-de5206f08a86.jpg?w=296&e=webp&cX=128&cY=0&cW=768&cH=768" alt="mountainpoolhouse">
+      <div class="image-title">Mountain House</div>
+    </a>
+      <a href="/a-frame" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-18168e41-577c-4b60-81da-e54b62630494.jpg?w=296&e=webp&cX=80&cY=0&cW=480&cH=480" alt="aframe">
+      <div class="image-title">A-Frame</div>
+    </a>
+    <a href="/delaware-river-house" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-f78bfd28-e7be-4009-81f6-b26239365ac8.jpg?w=296&e=webp" alt="delawareriver">
+      <div class="image-title">Delaware River House</div>
+          </a>
+    <a href="/bobolink" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-130695b4-d845-4a62-a3a0-dfcd2ae70a78.jpg?w=296&e=webp&cX=420&cY=0&cW=1660&cH=1660" alt="bobolink">
+      <div class="image-title">Bobolink</div>
+    </a>
+    <a href="/tamarack" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-41db09b9-cf22-4b7a-8090-5df7f314a4d6.jpg?w=296&e=webp&cX=0&cY=190&cW=750&cH=750" alt="tamarack">
+      <div class="image-title">Tamarack</div>
+    </a>
+    <a href="/lightness" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-3394b088-0559-4e9f-8d5c-ecae04450a37.jpg?w=296&e=webp&cX=261.5&cY=0&cW=477&cH=477" alt="lightness">
+      <div class="image-title">Lightness</div>
+    </a>
+    <a href="/beachwood" class="slide-link">
+      <img src="https://i-p.rmcdn.net/66b0fc7540c35e67b69734c2/4928253/image-b498608d-00ef-4806-80de-b33ac68b5f25.jpg?w=296&e=webp&cX=187.5&cY=0&cW=1125&cH=1125" alt="galleonslap">
+      <div class="image-title">Beachwood</div>
+    </a>
+            </div>
+        </div>
+        <a href="/upstate" class="see-more">
+            <div class="see-more-text">ALL UPSTATE NEW YORK PROJECTS</div>
+        </a>
+    </div>
+
+    <script>
+        (function() {
+            function initSlideshow(slideshow) {
+                var currentIndex = 0;
+                var slideshowInner = slideshow.querySelector('.slideshow-inner');
+                var slides = slideshow.querySelectorAll('.slide-link');
+                var totalSlides = slides.length;
+
+                function cloneSlides() {
+                    slides.forEach(function(slide) {
+                        var clone = slide.cloneNode(true);
+                        slideshowInner.appendChild(clone);
+                    });
+                }
+
+                function updateSlidePosition() {
+                    var slideWidth = slides[0].clientWidth;
+                    var newTranslateX = -currentIndex * slideWidth;
+                    slideshowInner.style.transform = 'translateX(' + newTranslateX + 'px)';
+
+                    if (currentIndex >= totalSlides) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = 0;
+                            slideshowInner.style.transform = 'translateX(0)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    } else if (currentIndex < 0) {
+                        setTimeout(function() {
+                            slideshowInner.style.transition = 'none';
+                            currentIndex = totalSlides - 1;
+                            var finalTranslateX = -currentIndex * slideWidth;
+                            slideshowInner.style.transform = 'translateX(' + finalTranslateX + 'px)';
+                            setTimeout(function() {
+                                slideshowInner.style.transition = 'transform 0.3s ease';
+                            }, 10);
+                        }, 300);
+                    }
+                }
+
+                slideshow.moveSlide = function(direction) {
+                    currentIndex += direction;
+                    updateSlidePosition();
+                };
+
+                cloneSlides();
+                updateSlidePosition();
+            }
+
+            var slideshows = document.querySelectorAll('.slideshow');
+            slideshows.forEach(initSlideshow);
+
+            window.moveSlide = function(direction, button) {
+                var slideshow = button.closest('.slideshow');
+                slideshow.moveSlide(direction);
+            };
+        })();
+    </script>
+</body>
+</html>

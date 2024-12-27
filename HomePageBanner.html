@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .slideshow {
+            width: 100%;
+            height: 100vh; /* Set to 50% of viewport height */
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slideshow-inner {
+            position: absolute;
+            height: 100%;
+            display: flex;
+            left: 0;
+            top: 0;
+        }
+        
+        .slide {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .slide img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+        <div class="slideshow-inner">
+            <!-- images will be added here -->
+        </div>
+    </div>
+    <script>
+    (function() {
+        const slideshow = document.querySelector('.slideshow');
+        const slideshowInner = slideshow.querySelector('.slideshow-inner');
+        const imageUrls = [
+            'https://i.imgur.com/Hb3Ud8M.jpeg',
+            'https://i.imgur.com/4MVHp05.jpeg',
+            'https://i.imgur.com/UMcAcXJ.jpeg',
+            'https://i.imgur.com/IkJDqCB.jpeg',
+            'https://i.imgur.com/KAmCYan.jpeg',
+            'https://i.imgur.com/gXGQqSl.jpeg',
+            'https://i.imgur.com/70qU6qt.jpeg',
+            'https://i.imgur.com/Y0PAzR4.jpeg',
+            'https://i.imgur.com/3QKwvBQ.jpeg',
+            'https://i.imgur.com/5wRZQ7A.jpeg',
+            'https://i.imgur.com/z644xtq.jpeg',
+            'https://i.imgur.com/ri3HmaK.jpeg',
+            'https://i.imgur.com/b2kPRgo.jpeg',
+            'https://i.imgur.com/bHFFPIl.jpeg',
+            'https://i.imgur.com/DZSVgze.jpeg',
+            'https://i.imgur.com/ls4eFST.jpeg',
+            'https://i.imgur.com/kPOcsb6.jpeg',
+            'https://i.imgur.com/MgcsC1p.jpeg'
+        ];
+
+        function createSlides() {
+            imageUrls.forEach(url => {
+                const slide = document.createElement('div');
+                slide.className = 'slide';
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Slideshow Image';
+          		img.draggable = false;
+                slide.appendChild(img);
+                slideshowInner.appendChild(slide);
+            });
+
+            Promise.all(Array.from(slideshowInner.querySelectorAll('img'))
+                .map(img => img.complete ? Promise.resolve() : new Promise(resolve => {
+                    img.onload = resolve;
+                })))
+                .then(() => {
+                    const slidesToClone = slideshowInner.querySelectorAll('.slide');
+                    const cloneCount = Math.ceil(slideshow.offsetWidth / slidesToClone[0].offsetWidth) + 1;
+                    
+                    for (let i = 0; i < cloneCount; i++) {
+                        const clone = slidesToClone[i].cloneNode(true);
+                        slideshowInner.appendChild(clone);
+                    }
+                    
+                    startScrolling();
+                });
+        }
+
+        function startScrolling() {
+            let scrollAmount = 0;
+            const slideWidth = slideshowInner.querySelector('.slide').offsetWidth;
+            const totalWidth = slideWidth * imageUrls.length;
+
+            function step() {
+                scrollAmount += 0.5;
+                if (scrollAmount >= totalWidth) {
+                    scrollAmount = 0;
+                }
+                slideshowInner.style.transform = `translateX(${-scrollAmount}px)`;
+                requestAnimationFrame(step);
+            }
+
+            requestAnimationFrame(step);
+        }
+
+        createSlides();
+    })();
+    </script>
+</body>
+</html>
